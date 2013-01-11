@@ -111,3 +111,6 @@ $tmpl->var = "<any variables you wish to include to the template>";
 $tmpl->output();
 ```
 
+---
+## CSS - less
+the style.css is generated from /ui/_css/libs/style.less and gets placed in /ui/_css/style.css
