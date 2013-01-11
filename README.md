@@ -67,14 +67,14 @@ some fun stuff
 ------------
 
 ### Timer()
-if you want to add a\ timer (think prifiler) to any bit of code.. use the timer class
+if you want to add a\ timer (think profiler) to any bit of code.. use the timer class
 
 ```php
 $timer = new \timer();
 $timer->stop("<message to include here that describes this timer>", "arguments");
 ```
 
-its recomended you sue something like this right above your return in the models. it shows the class and function used.. as well as a backtrace to see where its sued and how many times its called etc.
+its recommended you use something like this right above your return in the models. it shows the class and function used.. as well as a backtrace to see where its used and how many times its called etc.
 
 ```php
 $timer->stop(array( "Models" => array("Class"  => __CLASS__,"Method" => __FUNCTION__)), func_get_args());
@@ -87,9 +87,9 @@ it then has a var called "page" which is an array.
 
 template = the "page" template to use.. inside "ui/front/" it gets included inside the shell. any css / js page with the same name (in eg below its 'home' so /ui/front/home.tmpl will be loaded as well as /ui/front/_css/home.css and /ui/front/_js/home.js and /ui/front/_templates/home.jtmpl)
 
-/ui/front/_templates/homt.jtmpl - its the jQote2 templates to be included for ajax stuff.
+/ui/front/_templates/home.jtmpl - its the jQote2 templates to be included for ajax stuff.
 
-no need to include any css / js pages in the html.. all gets handled automaticaly if you use "template.tmpl" as the template and make use of the page var
+no need to include any css / js pages in the html.. all gets handled automatically if you use "template.tmpl" as the template and make use of the page var
 
 
 ```php
@@ -107,7 +107,7 @@ $tmpl->output();
 
 ```php
 $tmpl = new \template("<template to use, filename>", "<path to template folder / array of paths, system will pick the path depending on if the file exists or not>",true/false for strict folder);
-$tmpl->var = "<any cariables you wish to include to the template>";
+$tmpl->var = "<any variables you wish to include to the template>";
 $tmpl->output();
 ```
 
