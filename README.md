@@ -59,7 +59,8 @@ Tech
 
 
 Files (css / js includes like plugins / libraries)
------------
+---
+
 	controllers/general.php - place your included css files / js files into the array for them to be included in the combining script for css / js
 
 
