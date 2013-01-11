@@ -113,4 +113,4 @@ $tmpl->output();
 
 ---
 ## CSS - less
-the style.css is generated from /ui/_css/libs/style.less and gets placed in /ui/_css/style.css
+/ui/_css/style.css is generated from /ui/_css/libs/style.less. Consider it a collection of app styles
