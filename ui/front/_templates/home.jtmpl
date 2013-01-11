@@ -1,0 +1,42 @@
+<script type="text/x-jqote-template" id="template-home">
+    <![CDATA[
+<hr>
+    <table class="table">
+        <tr>
+            <td colspan="2"><h1>Not Static</h1></td>
+        </tr>
+        <tr>
+            <td>Class</td>
+            <td><%= this.N.class %></td>
+        </tr>
+        <tr>
+            <td>Function</td>
+            <td><%= this.N.method %></td>
+        </tr>
+        <tr>
+            <td colspan="2"><h1>Static</h1></td>
+        </tr>
+
+        <tr>
+            <td>Class</td>
+            <td><%= this.S.class %></td>
+        </tr>
+        <tr>
+            <td>Function</td>
+            <td><%= this.S.method %></td>
+        </tr>
+        <tr>
+            <td colspan="2"><h1>PHP Framework</h1></td>
+        </tr>
+        <tr>
+            <td>Package</td>
+            <td><%= this.N.F3.package %></td>
+        </tr>
+        <tr>
+            <td>Version</td>
+            <td><%= this.S.F3.version %></td>
+        </tr>
+    </table>
+
+  ]]>
+</script>

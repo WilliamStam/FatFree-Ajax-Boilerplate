@@ -1,0 +1,124 @@
+table.records {
+	.heading {
+		th {
+			padding-top   : 10px;
+			border-bottom : 1px solid #eeeeee;
+			border-left   : transparent;
+			border-right  : transparent;
+
+		}
+		.scrolllinks {
+			text-align : right;
+			.opacity(0);
+			.transition(all 0.5s ease-in-out);
+			a {
+				font-size    : 9px;
+				color        : #999;
+				padding      : 2px 5px 2px 5px;
+				border-right : 1px solid #ccc;
+				&:last-child {
+					border : none;
+				}
+			}
+		}
+		&:hover .scrolllinks {
+			.opacity(1);
+		}
+	}
+	thead, tbody.thead {
+		tr {
+
+			&.colheading {
+
+				border : 1px solid #e1e1e1;
+				.box-shadow(0 0 13px rgba(100, 100, 100, 0.2));
+				th {
+					padding-top    : 0;
+					padding-bottom : 0;
+					color          : #999;
+
+					.linear-gradient(#f5f5f5, #eeeeee, 30%, 100%);
+					&.order-btn {
+						font-weight : bold;
+						cursor      : pointer;
+						&:hover {
+							color : #000;
+						}
+						.indicator {
+							display : none;
+						}
+					}
+				}
+			}
+		}
+	}
+	tbody:not(.thead) {
+		border : 1px solid #e1e1e1;
+		.box-shadow(0 0 13px rgba(100, 100, 100, 0.2));
+		tr td:first-child {
+			padding-left : 10px;
+		}
+	}
+	h3 small {
+		margin-left : 20px;
+	}
+	.label {
+		font-size    : 8px;
+		margin-right : 3px;
+	}
+	.size {
+		color       : #999;
+		margin-left : 10px;
+		float       : right;
+	}
+	.record-tick {
+		text-align : center;
+	}
+}
+
+html.ie9 {
+	table.records {
+		thead, tbody.thead {
+			tr {
+
+				&.colheading {
+					.box-shadow(none);
+				}
+			}
+		}
+		tbody:not(.thead) {
+			.box-shadow(none);
+		}
+	}
+}
+
+.record {
+	&.highlight {
+		background-color : #CCFFFF
+	}
+	&.error {
+		background-color : #ffe6e6
+	}
+	&.active {
+		background-color : #DEEBFF;
+		cursor           : pointer;
+		text-shadow      : 0 1px 1px rgba(250, 250, 250, 0.25);
+		color            : #444;
+	}
+	&:hover {
+		background-color : #DEEBFF;
+		color            : #000;
+		cursor           : pointer;
+		text-shadow      : 0 1px 1px rgba(0, 0, 0, 0.25);
+	}
+	&.active td, &:hover td {
+		text-shadow : 0 -1px 0 rgba(255, 255, 255, 0.75);
+	}
+}
+
+.no-records {
+	padding      : 30px !important;
+	text-align   : center !important;
+	margin-right : 20px !important;
+	border       : none !important;
+}

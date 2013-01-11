@@ -1,0 +1,496 @@
+<!doctype html>
+<!--[if lt IE 9]>
+<html class="no-js oldie" lang="en"> <![endif]-->
+<!--[if IE 9]>
+<html class="no-js ie ie9" lang="en"> <![endif]-->
+<!--[if gt IE 9]>
+<html class="no-js ie" lang="en">
+<![endif]-->
+<!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+	<title>{{ page['meta']['title']|default("") }}</title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="/ui/_css/custom-theme/jquery-ui.css"/>
+	<link rel="stylesheet" type="text/css" href="/min/css.{{_v}}.css"/>
+
+
+	<script src="/ui/_js/libs/modernizr.{{_v}}.js"></script>
+
+
+	{% if page['template_css'] %}
+	<link rel="stylesheet" href="{{ page['template_css'] }}">
+	{% endif %}
+
+	{% if page['print'] %}
+	<link rel="alternate" media="print" href="{{ page['print'] }}">
+	<link rel="alternate" type="text/html" media="print" href="{{ page['print'] }}">
+	{% endif %}
+    <link rel="shortcut icon" type="image/x-icon" href="/ui/_images/favicon.ico">
+    <!--
+
+	<link rel="apple-touch-icon" href="/ui/_images/apple-touch.png">
+	-->
+
+
+
+</head>
+<body>
+
+
+{% if page['template'] %} {% include page['template'] %} {% endif %}
+
+
+
+<div id='systemTimers-container' class='modal hide fade'>
+	<div class='modal-header'><a href='#' class='close' data-dismiss="modal">&times;</a>
+
+		<h3>Debug</h3></div>
+	<div class='modal-body'>
+		<article>
+			<table id='systemTimers'>
+
+			</table>
+		</article>
+	</div>
+	<div class='modal-footer'>
+
+	</div>
+</div>
+
+<div id="displaylogout">
+	<div class='box'>
+		<h2>Inactivity</h2>
+
+		<div class="timer"></div>
+		<button class='btn primary ' style='margin-top: 20px; width: 190px;' id='keepalivebtn'>Keep me logged in</button>
+		<a class='btn  ' style='margin-top: 20px; margin-left: 10px; width: 92px;' href='/logout'>logout</a>
+	</div>
+</div>
+
+<div id="view-log" class='modal hide fade'>
+    <div class='modal-header'><a href='#' class='close' data-dismiss="modal">&times;</a>
+        <h3>View Log</h3>
+    </div>
+    <div class='modal-body'>
+        <table class="table" style="margin-top: 10px; margin-bottom: 8px; ">
+
+        </table>
+
+
+    </div>
+    <div class='modal-footer'>
+
+    </div>
+
+</div>
+<script  src="/ui/_js/libs/jquery.{{_v}}.js"></script>
+<script src="/min/js.{{_v}}.js"></script>
+
+
+<script type="text/javascript">
+	var detailsRequest = [];
+	var listRequest = [];
+	var logsRequest = [];
+	var activityRequest = [];
+	var transSpeed = '{{ transSpeed |default('400') }}';
+	$(function () {
+		$('body').tooltip({
+			selector:'[rel=tooltip]',
+            live:true,
+           container: 'body'
+
+		});
+		$('body').popover({
+			selector:'[rel=popover]',
+            offset:5,
+            live:true,
+            container:'body'
+		});
+
+        $('.dropdown-toggle').dropdown();
+
+		$(document).ajaxError(function (e, xhr, settings, exception) {
+			if (xhr.responseText) alert('error in: ' + settings.url + ' \n \n \n' + '\n' + xhr.responseText);
+		});
+
+
+
+	});
+	$(document).ready(function () {
+        $('.no-csstransforms3d .fade').removeClass('fade');
+
+
+
+
+		$(document).on("click", ".modal .close-btn", function (e) {
+			e.preventDefault();
+			var $this = $(this), $modal = $this.closest(".modal");
+			$modal.modal("hide");
+		//	$("#settings-modal").modal('hide');
+		});
+		$(document).on("click", "*[data-dismiss='popup']", function (e) {
+			e.preventDefault();
+			var $this = $(this), $popup = $this.closest(".popup");
+			$popup.fadeOut(transSpeed);
+		});
+		$(document).on("click", "*[data-target='popup']", function (e) {
+			e.preventDefault();
+			var $this = $(this), $popup = $this.attr("href");
+			$($popup).fadeIn(transSpeed).trigger("popup-show");
+		});
+
+
+		$(document).on("show", ".modal", function () {
+			var $this = $(this);
+			var h = $(window).height();
+			var th = $(this).height();
+
+			var mt = (th) / 2;
+			if (h < th) {
+				$this.css({
+					"margin-top":-(h / 2)
+				});
+
+			} else {
+				$this.css("margin-top", -mt);
+			}
+
+
+		});
+		$(document).on('click', '.btn-row-details', function (e) {
+			var $this = $(this), $table = $this.closest("table");
+			var $clicked = $(e.target).closest("tr.btn-row-details");
+			var active = true;
+
+			if ($this.hasClass("active") && $clicked) active = false;
+
+			$("tr.btn-row-details.active", $table).removeClass("active");
+			if (active) {
+				$this.addClass("active");
+			}
+
+			var show = $("tr.btn-row-details.active", $table).nextAll("tr.row-details");
+
+
+			$("tr.row-details", $table).hide();
+			if (show.length) {
+				show = show[0];
+				$(show).show();
+			}
+
+
+		});
+
+
+		$(document).on("click", "#keepalivebtn", function () {
+			$("#displaylogout").autoLogout('resetTimer');
+			$.getJSON("/data/keepalive?keepalive=true", function (d) {
+				$("#displaylogout").fadeOut(1000);
+			})
+		});
+		$(document).on("click", "#keepalivebtn-logout", function () {
+			$("#displaylogout").autoLogout('logout');
+
+		});
+
+	});
+	var autologoutRequest = [];
+	var $noticeareaIdle = $("#notice-area-idle");
+
+	//logout 5 minutes
+	// warning 4 minutes
+	// show idle 2 minutes
+
+	$("#displaylogout").autoLogout({
+		LogoutTime          :600,
+
+		onResetTimer        :function (e) {
+			this.css("background-color", "rgba(250, 250, 250, 0.8)");
+			$noticeareaIdle.stop(true, true).fadeOut(1000)
+
+		},
+		onLogout: function (timer){
+
+			window.location = "/logout/?msg=You+were+logged+out+due+to+inactivity";
+		},
+		keepAlive: function(){
+			$.getJSON("/data/keepalive/?keepalive=true", function (result) {});
+
+		},
+		onTimerSecond       :function (idle) {
+			var $this = this;
+			var settings = $this.data("settings");
+			var LogoutTime = settings.LogoutTime;
+			var parts = LogoutTime / 10;
+
+
+
+			if (idle == Math.floor(parts * 4) || idle == Math.floor(parts * 8) || idle == Math.floor(parts * 9) || idle >= LogoutTime-3) {
+				for (var i = 0; i < autologoutRequest.length; i++) autologoutRequest[i].abort();
+				autologoutRequest.push($.getJSON("/data/keepalive", function (result) {
+					var real_idle = result.idle;
+					$this.data("timer", real_idle);
+					idle = real_idle;
+					if (idle >= LogoutTime) {
+						window.location = "/logout/?msg=You+were+logged+out+due+to+inactivity";
+					}
+				}));
+			}
+
+
+
+			if (idle >= (parts * 8)+2){
+				remaining = LogoutTime - idle;
+				$noticeareaIdle.stop(true, true).html("You will be automaticaly logged out in "+ (remaining) +" seconds").fadeIn(1000)
+			} else {
+				$noticeareaIdle.stop(true, true).fadeOut(1000)
+			}
+
+			if (idle >= (parts * 9)+2){
+				remaining = LogoutTime - idle;
+				$this.stop(true,true).fadeIn(1000).find(".timer").html("You will be automaticaly logged out in " + (remaining) + " seconds");
+			} else {
+				$this.stop(true, true).fadeOut(1000);
+			}
+
+			var remaining = (LogoutTime - idle);
+			var remain_p = (remaining / LogoutTime) * 100
+
+			if (remain_p < 30){
+
+				var new_p = (remain_p / 30)
+				new_p = 1 - new_p;
+
+				if (new_p>0.8)	this.css("background-color", "rgba(250, 250, 250, "+ new_p+")");
+			}
+
+
+
+
+
+
+
+
+		}
+	});
+
+    $(document).on('click', '#view-log .record', function (e) {
+        var $this = $(this);
+        var $clicked = $(e.target).closest("tr.record");
+        var active = true;
+
+        if ($this.hasClass("active") && $clicked) active = false;
+
+        $("#view-log .record.active").removeClass("active");
+        if (active) {
+            $this.addClass("active");
+        }
+
+        var show = $("#view-log .record.active").attr("data-log-id");
+
+        $("#view-log .log-record-details").hide();
+        $("#view-log .log-record-details[data-log-id='" + show + "']").show();
+
+    });
+
+
+	var uID = "{{ _user['ID'] }}";
+	var jScrollPaneOptions = {
+		showArrows:false,
+		maintainPosition: false
+	};
+	var jScrollPaneOptionsMP = {
+		showArrows:false,
+		maintainPosition: true
+	};
+
+	$(document).ajaxComplete(function (event, request, settings) {
+		var u = settings.url;
+		var d = $.parseJSON(request.responseText);
+
+		var page_size = request.getResponseHeader('Content-Length');
+		page_size = (page_size)? page_size:"";
+
+		if (u == "/data/keepalive") {
+		} else {
+			updatetimerlist(d, page_size);
+		}
+
+	});
+	function updatetimerlist(d, page_size) {
+		//console.log(d);
+		if (!d){
+			return false;
+		}
+		$("#displaylogout").autoLogout('resetTimer');
+
+		var data = d['timer'];
+		var page = d['page'];
+		var models = d['models'];
+
+		if (d['notifications']){
+			$("#notice-area").jqotesub($("#template-notifications"), d['notifications']['footer']);
+		}
+
+		var pageSize = (page && page['size'])? page['size']: page_size;
+
+
+
+		if (data) {
+			var highlight = "";
+			if (page['time'] > {{ _cfg['debug']['highlightfrom'] }}) highlight = 'style="color: red;"';
+			var th = '<tr class="heading" style="background-color: #fdf5ce;"><td >' + page['page'] + ' : <span class="g">Size: ' + file_size(pageSize) + '</span></td><td class="s g"'+ highlight+'>' + page['time'] + '</td></tr>', thm;
+			if (models) {
+				thm = $("#template-timers-tr-models").jqote(models, "*");
+			} else {
+				thm = "";
+			}
+
+
+
+			$("#systemTimers").prepend(th + $("#template-timers-tr").jqote(data, "*")+ thm);
+
+           // console.log($("#systemTimers").prepend(th + $("#template-timers-tr").jqote(data, "*")));
+		}
+
+
+
+	}
+	function scrolling(api){
+
+		$(document).off('mousewheel').on('mousewheel', function (event, delta, deltaX, deltaY) {
+			if ($(event.target).closest(".modal").length || $(event.target).closest(".jspScrollable").length || $(event.target).closest(".select2-container").length ){
+			} else {
+				if (deltaY < 0) {
+					deltaY = -deltaY;
+				} else {
+					deltaY = -deltaY;
+				}
+
+				deltaY = deltaY * 30;
+
+				api.scrollByY(deltaY, false);
+			}
+
+
+		}).on('keydown',function(e){
+//				console.log(api.getContentHeight);
+
+				if ($(e.target).closest(".select2-container").length) {
+				} else {
+
+
+				var keyboardSpeed= 28, scrollPagePercent=.8;
+
+				switch (e.keyCode) {
+					case 34: // page down
+						api.scrollByY(300, false);
+						break;
+					case 33: // page up
+						api.scrollByY(-300, false);
+						break;
+
+				}
+				}
+			});
+
+
+	}
+	function file_size(size) {
+		if (!size){
+			return 0;
+		}
+		var origSize = size;
+		var units = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+		var i = 0;
+		while (size >= 1024) {
+			size /= 1024;
+			++i;
+		}
+
+		if (origSize>1024){
+			size = size.toFixed(1)
+		}
+		return size + ' ' + units[i];
+	}
+	if (!Array.prototype.indexOf) {
+		Array.prototype.indexOf = function (elt /*, from*/) {
+			var len = this.length >>> 0;
+
+			var from = Number(arguments[1]) || 0;
+			from = (from < 0) ? Math.ceil(from) : Math.floor(from);
+			if (from < 0)
+				from += len;
+
+			for (; from < len; from++) {
+				if (from in this && this[from] === elt)
+					return from;
+			}
+			return -1;
+		};
+	}
+	if (!Array.prototype.forEach) {
+		Array.prototype.forEach = function (fun /*, thisp*/) {
+			var len = this.length;
+			if (typeof fun != "function")
+				throw new TypeError();
+
+			var thisp = arguments[1];
+			for (var i = 0; i < len; i++) {
+				if (i in this)
+					fun.call(thisp, this[i], i, this);
+			}
+		};
+	}
+	Number.prototype.formatMoney = function (c, d, t) {
+		var n = this, c = isNaN(c = Math.abs(c)) ? 2 : c, d = d == undefined ? "," : d, t = t == undefined ? "." : t, s = n < 0 ? "-" : "", i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "", j = (j = i.length) > 3 ? j % 3 : 0;
+		return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+	};
+	String.prototype.capitalize = function () {
+		return this.charAt(0).toUpperCase() + this.slice(1);
+	};
+	function capitaliseFirstLetter(string) {
+		return string.charAt(0).toUpperCase() + string.slice(1);
+	}
+
+</script>
+{% if page['template_js'] %}
+<script src='{{ page['template_js'] }}'></script>
+{% endif %}
+
+
+{% if page['template_tmpl'] %}
+{% include page['template_tmpl'] %}
+{% endif %}
+
+{% include '_templates/template.jtmpl' %}
+
+{% if  _cfg['ga'] %}
+<script type="text/javascript">
+
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', '{{ _cfg['ga'] }}']);
+	_gaq.push(['_trackPageview']);
+
+	(function () {
+		var ga = document.createElement('script');
+		ga.type = 'text/javascript';
+		ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0];
+		s.parentNode.insertBefore(ga, s);
+	})();
+
+</script>
+{% endif %}
+</body>
+</html>

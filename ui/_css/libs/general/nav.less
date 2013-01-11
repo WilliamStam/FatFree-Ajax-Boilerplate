@@ -1,0 +1,127 @@
+.nav-dropdown-li {
+	&:hover a {
+		background-color : #e3e3e3;
+		text-decoration  : none;
+		text-shadow      : 0 1px 0 rgba(255, 255, 255, 0.9);
+		color            : #005580;
+	}
+	&.active a {
+		background-color : #0088CC;
+		color            : #FFFFFF;
+		text-shadow      : 0 -1px 0 rgba(0, 0, 0, 0.2);
+	}
+}
+
+.nav-icon-btn {
+	padding-left  : 12px !important;
+	padding-right : 12px !important;
+}
+
+.nav-icon-btn:hover .icon-d-grey {
+	background-image : url(/ui/_images/glyphicons-halflings-l-grey.png) !important;
+}
+
+#pageheader {
+
+	.dropdown.open >a {
+		background-color : #404040; /* Old browsers */
+		border-radius    : 5px;
+	}
+	.active a .caret {
+		color            : #000;
+		border-top-color : #000;
+	}
+	.dropdown-menu, #maintoolbar .dropdown-menu {
+		background-color : lighten(#f5f5f5, 30%);
+	}
+	.navbar-inner {
+		border-radius : 0;
+	}
+	.menu-icon {
+		background-image : url(/ui/_images/glyphicons-halflings-l-grey.png) !important;
+		margin-right     : 5px;
+		margin-left      : -20px;
+
+	}
+	.pull-right .menu-icon {
+		margin-left : -3px;
+	}
+}
+
+#app-nav {
+	margin-right : 0;
+	& > li.active > a {
+		color                   : #444;
+		text-shadow             : 0 0 0 #444;
+
+		.linear-gradient(#f5f5f5, #f5f5f5, 30%, 30%);
+
+		border-top-left-radius  : 5px;
+		border-top-right-radius : 5px;
+
+		margin-top              : 3px;
+		margin-bottom           : -3px;
+		height                  : 19px;
+
+	}
+	.dropdown-menu li a {
+		padding-left : 30px;
+	}
+
+}
+
+#app-nav-bar {
+
+	.dropdown-menu li > a:hover, .dropdown-menu li > a:focus, .dropdown-submenu:hover > a {
+		background : transparent;
+	}
+	.dropdown-menu li > a:hover, .dropdown-menu li > a:focus, .dropdown-submenu:hover > a {
+		color            : #444444;
+		background-color : #E3E3E3;
+	}
+	.icon-btn {
+		&.active i {
+			background-image : url("/ui/_images/glyphicons-halflings-d-grey.png");
+		}
+		width : 38px;
+
+		.nav-icon-btn {
+			padding-top : 13px;
+			height      : 19px;
+		}
+	}
+}
+
+.dropdown-menu li > a:hover, .dropdown-menu li > a:focus, .dropdown-submenu:hover > a {
+	color           : #444444;
+	text-decoration : none;
+}
+
+#app-nav-bar > ul > li .dropdown-menu li {
+	.nav-dropdown-li;
+}
+
+#pubSelectID-container {
+	.select2-container {
+		.select2-choice {
+			background-color : transparent;
+			border           : none;
+			color            : #999999;
+
+			padding-top      : 6px;
+			padding-bottom   : 3px;
+
+		}
+		.select2-choice div {
+			display : none;
+		}
+	}
+	.select2-container-active {
+		background-color : #404040;
+	}
+	.select2-dropdown-open .select2-choice {
+		box-shadow : none;
+	}
+}
+
+

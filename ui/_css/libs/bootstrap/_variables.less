@@ -1,0 +1,31 @@
+// Variables.less
+@baseFontSize : 13px;
+@baseLineHeight : 18px;
+
+@iconSpritePath:          "/ui/_images/glyphicons-halflings.png";
+@iconWhiteSpritePath:     "/ui/_images/glyphicons-halflings-white.png";
+
+
+@iconLGreySpritePath : "/ui/_images/glyphicons-halflings-l-grey.png";
+@iconDGreySpritePath : "/ui/_images/glyphicons-halflings-d-grey.png";
+
+
+@gridColumns:             16;
+@gridColumnWidth:         50px;
+@gridGutterWidth:         10px;
+@gridRowWidth:            (@gridColumns * @gridColumnWidth) + (@gridGutterWidth * (@gridColumns - 1));
+
+@navbarBackground : @grayDarker;
+@navbarBackgroundHighlight : @grayDark;
+@navbarText : @grayLight;
+@navbarLinkColor : @grayLight;
+@navbarLinkColorHover : @white;
+@navbarLinkColorActive : @navbarLinkColorHover;
+@navbarLinkBackgroundHover : transparent;
+@navbarLinkBackgroundActive : @navbarBackground;
+
+@navbarSearchBackground : lighten(@navbarBackground, 25%);
+@navbarSearchBackgroundFocus : @white;
+@navbarSearchBorder : darken(@navbarSearchBackground, 30%);
+@navbarSearchPlaceholderColor : #ccc;
+

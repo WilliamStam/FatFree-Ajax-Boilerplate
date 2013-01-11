@@ -1,0 +1,51 @@
+.box-shadow(@value) {
+	-webkit-box-shadow : @value;
+	-moz-box-shadow    : @value;
+	box-shadow         : @value;
+}
+
+.border-radius(@value) {
+	border-radius         : @value;
+	-webkit-border-radius : @value;
+	-moz-border-radius    : @value;
+}
+
+.linear-gradient(@start : #000000, @end : #ffffff, @start_alpha : 100%, @end_alpha : 100%) {
+	background-color  : @end;
+	background-repeat : repeat-x;
+	background-image  : -moz-linear-gradient(top, @start @start_alpha, @end @end_alpha);
+	background-image  : -webkit-gradient(linear, left top, left bottom, color-stop(@start_alpha, @start), color-stop(@end_alpha, @end));
+	background-image  : -webkit-linear-gradient(top, @start @start_alpha, @end @end_alpha);
+	background-image  : -ms-linear-gradient(top, @start @start_alpha, @end @end_alpha);
+	background-image  : -o-linear-gradient(top, @start @start_alpha, @end @end_alpha);
+	background-image  : linear-gradient(top, @start @start_alpha, @end @end_alpha);
+}
+
+.opacity(@value : 1) {
+	filter         : ~'alpha(opacity='@value*100~')';
+	-moz-opacity   : @value;
+	-khtml-opacity : @value;
+	opacity        : @value;
+}
+
+	.transition(@value: all 0.5s ease-in-out)
+
+{
+	-moz-transition    : @value
+;
+	-o-transition      : @value
+;
+	-webkit-transition : @value
+;
+	-ms-transition     : @value
+;
+	transition         : @value
+;
+}
+.fillblock(@top : 0, @right : 0, @bottom : 0, @left : 0) {
+	position : absolute;
+	top      : @top;
+	right    : @right;
+	bottom   : @bottom;
+	left     : @left;
+}

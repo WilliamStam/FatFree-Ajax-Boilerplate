@@ -1,0 +1,69 @@
+<script type="text/x-jqote-template" id="template-timers-tr">
+    <![CDATA[
+
+    <* if(this.msg!="Page Execute: "){ *>
+    <tr>
+        <td><*= this.msg *>
+            <div class="s g"><*= this.arg *></div>
+        </td>
+        <* if (this.tim > {{ _cfg['debug']['highlightfrom'] }}) { *>
+        <td style="color: red;"><*= this.tim *></td>
+        <* } else { *>
+        <td><*= this.tim *></td>
+        <* } *>
+
+    </tr>
+    <* } *>
+
+    ]]>
+</script>
+<script type="text/x-jqote-template" id="template-timers-tr-models">
+    <![CDATA[
+
+    <tr style="background-color:#f1f1f1; ">
+        <td><*= this.k *></td>
+        <td style="width: 140px; <* if ( this.t > {{ _cfg['debug']['highlightfrom'] }} ) { *>color: red;<* } *>"><*= this.t *></td>
+    </tr>
+    <* for(var i in this.m) { *>
+    <tr class="btn-row-details">
+        <td class="s g"
+        <* if (this.m[i].c > 1) { *>style="color: red;"<* } *>> <*= this.m[i].c *>&nbsp;|&nbsp;<*= this.m[i].l *></td>
+        <td class="s g"
+        <* if (this.m[i].t > {{ _cfg['debug']['highlightfrom'] }}) { *>style="color: red;"<* } *>> <*= this.m[i].t *></td>
+    </tr>
+
+    <tr class="row-details">
+        <td colspan="2">
+            <table class='s g' style='width:100%'>
+
+                <tbody>
+                <* for(var g in this.m[i].m) { *>
+                <tr>
+                    <td style="padding-left:30px;">
+
+                        <div style="margin-left: -20px;" class="dg">
+                            <*= this.m[i].m[g].arg.file *> : <*= this.m[i].m[g].arg.line *><br>
+                            <em style="margin-left: 10px;"><*= this.m[i].m[g].arg.class *>-><*= this.m[i].m[g].arg.function *>(<*= this.m[i].m[g].arg.args *>)</em>
+
+                        </div>
+                        <* if (this.m[i].m[g].bt) { *>
+                        <div style="margin-left: -20px;" class="">
+                            <*= this.m[i].m[g].bt.file *> : <*= this.m[i].m[g].bt.line *><br>
+                            <em style="margin-left: 10px;"><*= this.m[i].m[g].bt.class *>-><*= this.m[i].m[g].bt.function *>(<*= this.m[i].m[g].bt.args *>)</em>
+
+                        </div>
+                        <* } *>
+
+
+                    </td>
+                    <td style="width: 140px; <* if ( this.m[i].m[g].tim > {{ _cfg['debug']['highlightfrom'] }} ) { *>color: red;<* } *>"><*= this.m[i].m[g].tim *></td>
+                </tr>
+                <* } *>
+                </tbody>
+            </table>
+
+        </td>
+    </tr>
+    <* } *>
+    ]]>
+</script>

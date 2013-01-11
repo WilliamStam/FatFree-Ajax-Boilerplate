@@ -1,0 +1,248 @@
+body {
+	position   : absolute;
+	top        : 0;
+	bottom     : 0;
+	left       : 0;
+	right      : 0;
+	overflow-y : hidden;
+	overflow-x : auto;
+	min-width  : 980px;
+}
+
+#pagecontent {
+	position : absolute;
+	z-index  : 1;
+	top      : 40px;
+	bottom   : 20px;
+	left     : 0;
+	right    : 0;
+	overflow : hidden;
+	.linear-gradient(#e1e1e1, #ffffff);
+	.container {
+		border-left      : 1px solid #ccc;
+		border-right     : 1px solid #ccc;
+		height           : 100%;
+
+
+		.box-shadow(0px 0px 10px rgba(150, 150, 150, 0.5)); /* Opera 10.5, IE9, FF4+, Chrome 10+ */
+		background-color : #fff;
+	}
+	.loading {
+		position : fixed;
+		top      : 80px;
+		left     : 0;
+		right    : 0;
+		z-index  : 100000;
+		display  : none;
+		&> div {
+			border           : 1px solid #ccc;
+			width            : 300px;
+			margin-left      : auto;
+			margin-right     : auto;
+			background-color : #feffd7;
+			padding          : 10px 10px 15px 10px;
+			.box-shadow(0px 0px 10px rgba(150, 150, 150, 0.5));
+		}
+	}
+}
+
+#pageheader {
+	position    : absolute;
+	top         : 0;
+	left        : 0;
+	right       : 0;
+	height      : 40px;
+	line-height : 40px;
+	z-index     : 100;
+	.nav {
+		&> li > a {
+			padding  : 10px 22px 11px 22px;
+			position : relative;
+		}
+		&> li.dropdown > a {
+			padding : 10px 32px 11px 22px;
+		}
+		.dropdown-toggle .caret, .open.dropdown .caret {
+			position : absolute;
+			right    : 15px;
+			top      : 10px;
+		}
+		#nav-pub-list {
+			width           : 142px;
+			overflow        : hidden;
+			text-overflow   : ellipsis;
+			white-space     : nowrap;
+
+			color           : #999999;
+			float           : none;
+			line-height     : 19px;
+			text-decoration : none;
+			text-shadow     : 0 -1px 0 rgba(0, 0, 0, 0.25);
+
+			.caret {
+				position : absolute;
+				right    : 15px;
+				top      : 10px;
+			}
+		}
+	}
+	.divider-vertical {
+		margin : 0;
+	}
+}
+
+#pagefooter {
+	padding     : 0;
+	position    : absolute;
+	bottom      : 0;
+	left        : 0px;
+	right       : 0px;
+
+	color       : #fff;
+
+	.box-shadow(0px 0px 5px rgba(100, 100, 100, 0.8));
+	height      : 20px;
+	line-height : 20px;
+	font-size   : 10px;
+
+
+	.linear-gradient(#333333, #222222);
+	z-index     : 100;
+}
+
+#left-area {
+	background-color : #fff;
+	position         : absolute;
+	top              : 42px;
+	bottom           : 0;
+	display          : block;
+	border-right     : #ccc 1px solid;
+	.box-shadow(4px 0px 5px rgba(150, 150, 150, 0.2));
+	margin-left      : 15px;
+	.scroll-pane {
+		.fillblock(0,0,0,0);
+		overflow : auto;
+		&.scrolly {
+			overflow-x : hidden !important;
+		}
+	}
+	.jspVerticalBar, .jspHorizontalBar {
+		.opacity(0);
+		.transition(all 0.5s ease-in-out);
+	}
+	&:hover {
+		.jspVerticalBar, .jspHorizontalBar {
+			.opacity(1);
+		}
+	}
+}
+
+#right-area {
+	position : absolute;
+	top      : 42px;
+	bottom   : 0;
+	.scroll-pane {
+		.fillblock(0,0,0,0);
+		overflow : auto;
+		&.scrolly {
+			overflow-x : hidden !important;
+		}
+	}
+	.jspVerticalBar {
+		.opacity(0);
+		.transition(all 0.5s ease-in-out);
+	}
+	&:hover .jspVerticalBar {
+		.opacity(1);
+	}
+}
+
+#whole-area {
+	position    : absolute;
+	top         : 42px;
+	bottom      : 0 !important;
+	margin-left : 0;
+	.scroll-pane {
+		.fillblock(0,0,0,0);
+		overflow : auto;
+		&.scrolly {
+			overflow-x : hidden !important;
+		}
+	}
+	.jspVerticalBar, .jspHorizontalBar {
+		.opacity(0);
+		.transition(all 0.5s ease-in-out);
+	}
+	&:hover {
+		.jspVerticalBar, .jspHorizontalBar {
+			.opacity(1);
+		}
+	}
+}
+
+#displaylogout {
+	position         : absolute;
+	top              : 0;
+
+	padding          : 30px;
+	left             : 0;
+	bottom           : 0;
+	right            : 0;
+
+	z-index          : 30000;
+
+	background-color : rgba(250, 250, 250, 0.8);
+	display          : none;
+	.box {
+		position              : absolute;
+		top                   : 50%;
+		left                  : 50%;
+		margin-top            : -100px;
+		margin-left           : -200px;
+		height                : 120px;
+		width                 : 300px;
+		border                : 1px solid #ccc;
+		-webkit-border-radius : 20px;
+		-moz-border-radius    : 20px;
+		border-radius         : 20px;
+
+		-webkit-box-shadow    : 2px -2px 5px rgba(150, 150, 150, 0.2);
+		-moz-box-shadow       : 2px -2px 5px rgba(150, 150, 150, 0.2);
+		box-shadow            : 2px -2px 5px rgba(150, 150, 150, 0.2);
+		background-color      : #fff;
+		padding               : 30px 50px;
+
+		h2 {
+
+			margin-top    : 0px;
+			padding-top   : 0px;
+			margin-bottom : 20px;
+		}
+	}
+}
+
+.admin_pages {
+	#pagination {
+		display    : none;
+		text-align : center;
+	}
+
+	.order-btn {
+		font-weight : bold;
+		cursor      : pointer;
+		&:hover {
+			color            : #000;
+			background-color : #f1f1f1;
+		}
+		&.indicator {
+			display : none;
+		}
+	}
+
+	td.cur-pub:hover {
+		background-color : #e1e1e1 !important;
+	}
+	#left-area .alert {
+		margin-right : 15px;
+	}
+}

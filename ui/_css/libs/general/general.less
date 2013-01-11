@@ -1,0 +1,610 @@
+table tr.headingrow {
+	border : 1px solid #e1e1e1;
+	th {
+		padding-top    : 0;
+		padding-bottom : 0;
+		color          : #999;
+
+		.linear-gradient(#f5f5f5, #eeeeee, 30%, 100%);
+	}
+}
+
+form.form-fill {
+	margin  : 0;
+	padding : 0;
+	.form-header {
+		position : absolute;
+		top      : 0;
+		left     : 0;
+		right    : 0;
+	}
+	.form-body {
+		.fillblock();
+	}
+	.form-footer {
+		position : absolute;
+		bottom   : 0;
+		left     : 0;
+		right    : 0;
+	}
+	.form-actions {
+		margin-top    : 0;
+		margin-bottom : 0;
+		padding       : 5px 0 5px 0;
+	}
+}
+
+.highlighthovered {
+	&>a, &>label, &>li, &>div {
+		.transition(all 0.5s ease-in-out);
+	}
+	&:hover {
+		> a, > label, > li, > div {
+			.opacity(0.5);
+		}
+		> .donthighlighthovered {
+			.opacity(1);
+		}
+	}
+	&>a:hover, &>label:hover, &>li:hover, &>div:hover {
+		.opacity(1);
+	}
+}
+
+.btn-row-details {
+	cursor : pointer;
+	&:hover {
+		background-color : #DEEBFF;
+	}
+}
+
+.row-details {
+	padding : 0;
+	display : none;
+}
+
+.clickable {
+	cursor : pointer;
+}
+
+table {
+	width : 100%;
+	td {
+		vertical-align : top;
+	}
+}
+
+form {
+	&.form-narrow, .form-narrow {
+		.controls {
+			margin-left : 120px;
+		}
+		.control-label {
+			width : 100px;
+		}
+	}
+	&.form-super-narrow, .form-super-narrow {
+		.controls {
+			margin-left : 80px;
+		}
+		.control-label {
+			width : 60px;
+		}
+	}
+
+}
+
+.btn {
+	&.l {
+		text-align : left;
+	}
+	&.r {
+		text-align : right;
+	}
+}
+
+input[disabled], select[disabled], textarea[disabled], input[readonly], select[readonly], textarea[readonly] {
+	cursor : default;
+}
+
+#pagination {
+	position    : absolute;
+	bottom      : 0;
+	left        : 0;
+	right       : 0;
+	.linear-gradient(#f5f5f5, #eeeeee, 30%, 100%);
+	.box-shadow(0 0 3px rgba(100, 100, 100, 0.2));
+	margin      : 0;
+	border-top  : 1px solid #ccc;
+	padding-top : 4px;
+	height      : auto;
+
+	a {
+		width            : 29px;
+		padding          : 4px;
+		line-height      : normal;
+		background-color : #fff;
+		&:hover {
+
+			background-color : rgb(221, 238, 255);
+			color            : rgb(0, 114, 188);
+		}
+		&.active {
+			&:hover {
+
+			}
+		}
+	}
+	li.active a {
+		color : #ccc;
+		&:hover {
+			background-color : #fff;
+		}
+	}
+	li.disabled a {
+		color : #ccc;
+		&:hover {
+			background-color : #fff;
+		}
+	}
+
+}
+
+#pagination-info {
+	position      : absolute;
+	right         : 0;
+	top           : 7px;
+
+	padding-right : 10px;
+
+	color         : #999;
+	font-size     : 11px;
+}
+
+.clearfix:before, .clearfix:after {
+	content : "";
+	display : table;
+}
+
+.clearfix:after {
+	clear : both;
+}
+
+.clearfix {
+	zoom   : 1;
+	margin : 0;
+}
+
+fieldset .clearfix {
+	margin-bottom : 18px;
+}
+
+.loadingmask {
+	background : rgba(250, 250, 250, 0.7) url(/ui/_images/loading-wide.gif) no-repeat center center;
+	position   : absolute;
+	top        : 0;
+	bottom     : 0;
+	left       : 0;
+	right      : 0;
+	display    : block;
+	z-index    : 500;
+}
+
+.loadingmask.round {
+	background : rgba(250, 250, 250, 0.7) url(/ui/_images/loading-small.gif) no-repeat center center;
+
+}
+
+.loadingmask.bar {
+	background : rgba(250, 250, 250, 0.7) url(/ui/_images/loading-wide.gif) no-repeat center center;
+
+}
+
+.c {
+	text-align : center;
+}
+
+.l {
+	text-align : left;
+}
+
+.r {
+	text-align : right;
+}
+
+.s {
+	font-size : 10px;
+}
+
+.g {
+	color : #bfbfbf;
+}
+
+.dg {
+	color : #8c8c8c;
+}
+
+.f8 {
+	font-size : 8px;
+}
+
+.f9 {
+	font-size : 9px;
+}
+
+.f10 {
+	font-size : 10px;
+}
+
+.f11 {
+	font-size : 11px;
+}
+
+.f12 {
+	font-size : 12px;
+}
+
+.f13 {
+	font-size : 13px;
+}
+
+.glow {
+	-webkit-box-shadow : 0 0 2px rgba(0, 0, 0, 0.25);
+	-moz-box-shadow    : 0 0 2px rgba(0, 0, 0, 0.25);
+	box-shadow         : 0 0 2px rgba(0, 0, 0, 0.25);
+
+}
+
+#systemTimers-container {
+
+}
+
+#systemTimers td .small {
+	font-size : 8px;
+	color     : #999;
+}
+
+#systemTimers td {
+	border-bottom : 1px dotted #ccc;
+	font-size     : 10px;
+	padding       : 3px;
+
+}
+
+#systemTimers .heading {
+	background-color : #f1f1f1;
+	font-weight      : bold;
+}
+
+table tr.active {
+	background-color : #DEEBFF;
+}
+
+table tr.active td {
+	color : #444;
+}
+
+ul.bar {
+	padding    : 0;
+	margin     : 0;
+	list-style : none;
+}
+
+.btn {
+	text-align : center;
+	padding    : 5px 0 6px;
+}
+
+.scroll-pane:focus {
+	outline : 0;
+}
+
+#h5p-message>div {
+
+}
+
+.browser-block {
+	display : block;
+	width   : 100px;
+	margin  : 10px;
+	float   : left;
+
+	padding : 5px;
+
+}
+
+.browser-block .btn {
+	width      : 100px;
+	margin-top : 10px;
+}
+
+.browser-icon {
+	background     : url(/ui/_images/browser-icons-32.png) 0 0 no-repeat;
+
+	display        : block;
+	vertical-align : middle;
+	height         : 32px;
+	width          : 32px;
+	margin-left    : 34px;
+	margin-top     : 5px;
+}
+
+.browser-icon.browser-icon-chrome {
+	background-position : -32px 0;
+}
+
+.browser-icon.browser-icon-firefox {
+	background-position : -64px 0;
+}
+
+.browser-icon.browser-icon-opera {
+	background-position : -96px 0;
+}
+
+.browser-icon.browser-icon-safari {
+	background-position : -128px 0;
+}
+
+.browser-icon.browser-icon-ie {
+	background-position : -160px 0;
+}
+
+button[disabled] i {
+	background-image : url("/ui/_images/glyphicons-halflings-l-grey.png");
+}
+
+.statstable strong {
+	font-size   : 16px;
+	font-weight : bold;
+
+}
+
+.statstable small {
+
+	color : #BFBFBF;
+
+}
+
+#scroll-container {
+	padding : 0 15px 0 15px;
+}
+
+.jspScrollable #scroll-container {
+	padding : 0 0 0 15px;
+}
+
+#apps-select {
+
+	ul {
+		list-style : none;
+		padding    : 0;
+		margin     : 0;
+		li {
+			border           : 1px solid transparent;
+			float            : left;
+			background-color : rgba(250, 250, 250, 0.9);
+
+			&.active {
+				border : 1px solid #ccc;
+				a {
+					background-color : #f1f1f1;
+				}
+			}
+			&.disabled {
+				a {
+					background-color : #fff;
+					color            : #ccc;
+				}
+			}
+
+			a {
+				display         : block;
+				padding         : 15px 0;
+				width           : 263px;
+				color           : #444;
+				text-align      : center;
+				text-decoration : none;
+				&:hover {
+					background-color : #DEEBFF;
+					color            : #000;
+				}
+			}
+
+		}
+	}
+
+}
+
+.modal.wide {
+	width       : 920px;
+	margin-left : -460px;
+	overflow    : hidden;
+	.modal-body {
+		width    : 890px;
+	}
+	.modal-header {
+		position : relative;
+	}
+}
+
+.modal {
+
+	.loadingmask {
+		display : none;
+	}
+	&.loading {
+
+		.loadingmask {
+			display : block;
+		}
+	}
+}
+
+.popup {
+	display                 : none;
+	position                : fixed;
+	height                  : 310px;
+	width                   : 500px;
+	background-color        : #ffffff;
+	top                     : 50%;
+	left                    : 50%;
+	margin-top              : -155px;
+	margin-left             : -250px;
+
+	border                  : 1px solid #999999;
+	border                  : 1px solid rgba(0, 0, 0, 0.3);
+	*border                 : 1px solid #999999;
+/* IE6-7 */
+
+	-webkit-border-radius   : 6px;
+	-moz-border-radius      : 6px;
+	border-radius           : 6px;
+	-webkit-box-shadow      : 0 3px 7px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow         : 0 3px 7px rgba(0, 0, 0, 0.3);
+	box-shadow              : 0 3px 7px rgba(0, 0, 0, 0.3);
+	-webkit-background-clip : padding-box;
+	-moz-background-clip    : padding-box;
+	background-clip         : padding-box;
+
+	.popup-header {
+		padding       : 9px 15px;
+		border-bottom : 1px solid #eeeeee;
+	}
+	.popup-header .close {
+		margin-top : 2px;
+	}
+	.popup-body {
+		overflow-y : auto;
+		height     : 196px;
+		padding    : 10px;
+		position   : relative;
+
+	}
+	.popup-form {
+		margin-bottom : 0;
+	}
+	.popup-footer {
+		position              : absolute;
+		bottom                : 0;
+		left                  : 0;
+		right                 : 0;
+		padding               : 7px 10px 10px;
+		margin-bottom         : 0;
+		text-align            : right;
+		background-color      : whitesmoke;
+		border-top            : 1px solid #dddddd;
+		-webkit-border-radius : 0 0 6px 6px;
+		-moz-border-radius    : 0 0 6px 6px;
+		border-radius         : 0 0 6px 6px;
+		.box-shadow(inset 0 1px 0 white);
+		*zoom                 : 1;
+
+		.btn + .btn {
+			margin-left   : 5px;
+			margin-bottom : 0;
+		}
+
+		&:before, &:after {
+			display : table;
+			content : "";
+		}
+		&:after {
+			clear : both;
+		}
+	}
+}
+
+form #form-bottom {
+	position           : absolute;
+	bottom             : 0;
+	left               : 0;
+	right              : 0;
+
+	background-color   : #eeeeee;
+	background-repeat  : repeat-x;
+	background-image   : -moz-linear-gradient(top, whitesmoke 30%, #eeeeee 100%);
+	background-image   : -webkit-gradient(linear, left top, left bottom, color-stop(30%, whitesmoke), color-stop(100%, #eeeeee));
+	background-image   : -webkit-linear-gradient(top, whitesmoke 30%, #eeeeee 100%);
+	background-image   : -ms-linear-gradient(top, whitesmoke 30%, #eeeeee 100%);
+	background-image   : -o-linear-gradient(top, whitesmoke 30%, #eeeeee 100%);
+
+	background-image   : linear-gradient(top, whitesmoke 30%, #eeeeee 100%);
+	-webkit-box-shadow : 0 0 3px rgba(100, 100, 100, 0.2);
+	-moz-box-shadow    : 0 0 3px rgba(100, 100, 100, 0.2);
+	box-shadow         : 0 0 3px rgba(100, 100, 100, 0.2);
+
+.form-actions {
+	margin  : 0;
+	padding : 5px;
+}
+
+.form-actions .btn {
+
+}
+
+	}
+
+#notice-area {
+	&>span {
+		position     : relative;
+		border-right : 1px solid #666;
+		border-left  : 1px solid #666;
+		padding      : 2px 5px;
+		margin-left  : -10px;
+		margin-right : 20px;
+		color        : #c7c7c7;
+		.transition(all 0.5s ease-in-out);
+
+		&>span {
+			color : #999;
+			.transition(all 0.5s ease-in-out);
+		}
+		&>div {
+			position         : absolute;
+			left             : 0;
+			top              : 0;
+			bottom           : 0;
+			background-color : #666;
+			z-index          : -1;
+		}
+		&:hover {
+			color : #FFF;
+			& > span {
+				color : #FFF;
+			}
+		}
+	}
+}
+
+.admin_pages {
+
+}
+
+#search-box {
+	position : absolute;
+	bottom   : 0;
+	right    : 0;
+
+	button {
+		width  : 60px;
+		height : 28px;
+
+	}
+	#search-box-toggle {
+		.opacity(0.1);
+		.transition(all 0.5s ease-in-out);
+		position : absolute;
+		bottom   : 3px;
+		right    : 3px;
+	}
+	form {
+		margin  : 3px 0;
+		display : none;
+	}
+	&:hover {
+		#search-box-toggle {
+			.opacity(1);
+		}
+	}
+
+}
