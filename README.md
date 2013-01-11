@@ -13,8 +13,8 @@ My F3 Ajax application with timers to monitor performance etc.
 
 Setup stuff:
 ----------
-	make sure you have a users table with ID and last_activity (datetime) columns. the system uses it for the auto logout timer thing
-	create a file (if it doesnt exist) config.inc.php and copy the relevant bits from config.default.inc.php into it and make your changes.
+
+make sure you have a users table with ID and last_activity (datetime) columns. the system uses it for the auto logout timer thing create a file (if it doesnt exist) config.inc.php and copy the relevant bits from config.default.inc.php into it and make your changes.
 
 
 
@@ -69,15 +69,15 @@ some fun stuff
 ### Timer()
 	if you want to add a\ timer (think prifiler) to any bit of code.. use the timer class
 
-```
-			$timer = new \timer();
-			$timer->stop("<message to include here that describes this timer>", "arguments");
+```php
+$timer = new \timer();
+$timer->stop("<message to include here that describes this timer>", "arguments");
 ```
 
 			its recomended you sue something like this right above your return in the models. it shows the class and function used.. as well as a backtrace to see where its sued and how many times its called etc.
 
-			```
-			$timer->stop(array( "Models" => array("Class"  => __CLASS__,"Method" => __FUNCTION__)), func_get_args());
+```php
+$timer->stop(array( "Models" => array("Class"  => __CLASS__,"Method" => __FUNCTION__)), func_get_args());
 ```
 
 ### Template()
@@ -92,7 +92,7 @@ template = the "page" template to use.. inside "ui/front/" it gets included insi
 no need to include any css / js pages in the html.. all gets handled automaticaly if you use "template.tmpl" as the template and make use of the page var
 
 
-```
+```php
 $tmpl = new \template("template.tmpl", "ui/front/",true);
 $tmpl->page = array(
 	"template"    => "home",
@@ -105,7 +105,7 @@ $tmpl->output();
 
 *basic usage is*
 
-```
+```php
 $tmpl = new \template("<template to use, filename>", "<path to template folder / array of paths, system will pick the path depending on if the file exists or not>",true/false for strict folder);
 $tmpl->var = "<any cariables you wish to include to the template>";
 $tmpl->output();
