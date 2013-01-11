@@ -60,22 +60,21 @@ Tech
 
 Files (css / js includes like plugins / libraries)
 ---
-
-	controllers/general.php - place your included css files / js files into the array for them to be included in the combining script for css / js
+controllers/general.php - place your included css files / js files into the array for them to be included in the combining script for css / js
 
 
 some fun stuff
 ------------
 
 ### Timer()
-	if you want to add a\ timer (think prifiler) to any bit of code.. use the timer class
+if you want to add a\ timer (think prifiler) to any bit of code.. use the timer class
 
 ```php
 $timer = new \timer();
 $timer->stop("<message to include here that describes this timer>", "arguments");
 ```
 
-			its recomended you sue something like this right above your return in the models. it shows the class and function used.. as well as a backtrace to see where its sued and how many times its called etc.
+its recomended you sue something like this right above your return in the models. it shows the class and function used.. as well as a backtrace to see where its sued and how many times its called etc.
 
 ```php
 $timer->stop(array( "Models" => array("Class"  => __CLASS__,"Method" => __FUNCTION__)), func_get_args());
